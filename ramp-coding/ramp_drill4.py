@@ -10,6 +10,7 @@ class MockResponse:
 
     def json(self): return self.json_data
 
+
 class MockSensitiveServer:
     def __init__(self):
         self.last_request_time = 0

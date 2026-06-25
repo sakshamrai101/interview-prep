@@ -96,6 +96,8 @@ class RampCrawlMachine:
         
         # If everything went cleanly we will just return the json response. 
         return response.json()
+    
+
 
 
     """
@@ -120,8 +122,11 @@ class RampCrawlMachine:
         try:
             clean_amount = float(raw_amount)
 
-            # Return clean tuple with merchant_name, amount
-            return merchant, clean_amount
+            # Check the condition for which we want to return:
+            if clean_amount > 3000.0:
+                return True, department
+            else:
+                return
         except (ValueError, TypeError):
             # This catches corrupt text rows (like "invalid_amount_corrupted") so the program won't crash
             print(f"  [DATA WARNING] Transaction {tx_id} has unparseable amount: '{raw_amount}'. Skipping row.")
