@@ -65,6 +65,8 @@ class RampSpendCapEngine:
             if category != "software":
                 print(f"❌ [DENIED] ${amount:.2f} is OVER cap for {category}. Current: ${current_total:.2f} | Limit: ${self.category_caps[category]:.2f}")
                 return "DENIED"
+        
+    
 
         # 4. Single Path of Truth: If we clear the guard clause, mutate state permanently. 
         self.current_spend[category] = projected_total
