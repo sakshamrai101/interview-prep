@@ -12,6 +12,11 @@ When an item is updated or read, its priority must instantly refresh to make it 
 
 """
 
+class RampExtractEngine:
+
+    def __init__(self):
+
+
 class Node:
 
     """
@@ -91,7 +96,7 @@ class TieredLRUCache:
         Retrieves a value out from the cache index in O(1) time. 
         Refreshes its timeline usage position if it exists.
         """
-        
+
         if key not in self.cache:
             return None # cache miss
         
