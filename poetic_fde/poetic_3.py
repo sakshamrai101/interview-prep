@@ -62,7 +62,6 @@ class SOPWorkflowEngine:
         if op =="in": return field_value in target_value 
         return False 
     
-
     def find_execution_path(self, start_node: str, transaction_data: dict) -> list[str]:
         """
         Traverses the graph iteratively from start_node to terminal_node.
