@@ -44,13 +44,16 @@ cyclic_tasks = {
 class SOPTaskScheduler:
 
     def __init__(self, tasks_config):
-        self.tasks_config = tasks_config 
+        self.tasks_config = tasks_config
+    
+
     
     def get_execution_order(self) -> dict:
 
         # Step 1: Calculate in-degree (number of pending dependencies)
         # and build an adjacency list of downstream dependents 
         in_degree = {task: len(deps) for task, deps in self.tasks_config.items()}
+        print(in_degree)
         graph = defaultdict(list)
 
         for task, deps in self.tasks_config.items():

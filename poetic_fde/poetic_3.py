@@ -75,11 +75,13 @@ class SOPWorkflowEngine:
         path = []
         visted_nodes = set()
         current_node = start_node
+        cycle_detected = False
 
         while current_node:
 
             # Step 1: Cycle Detection Step
             if current_node in visted_nodes:
+                cycle_detected = True
                 print(f"[WARNING]: Cycle detected at node: '{current_node}'. Stopping traversal.")
                 break 
             
@@ -107,7 +109,12 @@ class SOPWorkflowEngine:
             # Step 5: Advance Traversal 
             current_node = next_node
         
-        return path 
+        terminal_node = path[-1] if path else None
+        return {
+            "path": path,
+            "terminal_node": terminal_node,
+            "cycle_detected": cycle_detected
+        } 
 if __name__ == "__main__":
     workflow_schema = {
         "START": [

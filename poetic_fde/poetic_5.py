@@ -54,6 +54,8 @@ class SOPRuleSearcherEngine:
     
     
     def find_rules_by_min_priority(self, min_priority: int) -> dict:
+        if not self.config:
+            return []
 
         q = deque([self.config])
         result = []
@@ -73,32 +75,3 @@ class SOPRuleSearcherEngine:
         
         return result 
 
-if __name__ == "__main__":
-    nested_config = {
-        "section_id": "SEC-ROOT",
-        "rules": [
-            {"id": "R1", "name": "KYC Check", "priority": 10},
-            {"id": "R2", "name": "Basic Fraud", "priority": 3}
-        ],
-        "sub_sections": [
-            {
-                "section_id": "SEC-FINANCE",
-                "rules": [
-                    {"id": "R3", "name": "AML Scan", "priority": 8}
-                ],
-                "sub_sections": [
-                    {
-                        "section_id": "SEC-WIRE",
-                        "rules": [
-                            {"id": "R4", "name": "Wire Limit", "priority": 2},
-                            {"id": "R5", "name": "OFAC Sanctions", "priority": 10}
-                        ],
-                        "sub_sections": []
-                    }
-                ]
-            }
-        ]
-    }
-
-    engine = SOPRuleSearcherEngine(nested_config)
-    print(engine.find_rules_by_min_priority(8))
