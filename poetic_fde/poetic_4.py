@@ -42,10 +42,11 @@ class SOPGraphEngine:
 
         if start_node not in self.workflow:
             raise ValueError(f"Start node '{start_node}' does not exist in workflow definition")
-        
         path = []
-        visited_nodes = set() # to detect cycles 
-        current_node = start_node # use to traverse graph
+        visited_nodes = set()
+        current_node = start_node 
+
+
 
         while current_node:
             
